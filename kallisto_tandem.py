@@ -134,13 +134,9 @@ def concatenate_fasta(filename, output):
 
 def driver():
     parser = argparse.ArgumentParser()
-    parser.add_argument('action', help='The script to be run.\n\
-        \tconcatenate:\t\t : Concatenates two or more fasta files.\
-        \trenormalize:\t\t : Splits the results of a kallisto tandem run into\
-        \t\t\t\t\t\t : separate matrices and recalculates TPM w.r.t\
-        \t\t\t\t\t\t : each matrix.')
-    parser.add_argument('-i', help='Path to the input file to be processed.', metavar='input_file')
-    parser.add_argument('-o', help='Path to the output file to which results are to be written.', metavar='output_directory')
+    parser.add_argument('action', choices=['concatenate', 'renormalize'], help='Concatenates one or more fasta files to be used to create a joint kallisto index. Renormalize splits up the data from a tandem kallisto run into its constituent classes and variants, renormalizes TPM w.r.t. each submatrix.')
+    parser.add_argument('-i', help='Path to the input file to be processed.', metavar='input_file', required=True)
+    parser.add_argument('-o', help='Path to the output file to which results are to be written.', metavar='output_directory', required=True)
     parser.add_argument('--version', action='version', version='%(prog)s v0.1')
     args = parser.parse_args()
 
