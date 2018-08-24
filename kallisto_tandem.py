@@ -21,7 +21,6 @@ def _populate_tpm(rows):
 
         # TODO:
         # Ask Lior whether this is the correct way to calculate the aggregate TPM
-        # row['aggregate'] = sum(map(lambda t: t[0] / t[1], zip(counts.values(), lengths.values())))
         row['aggregate'] = sum(map(float, counts.values())) / sum(map(float, lengths.values()))
         try:
             denominators['aggregate'] += row['aggregate']
@@ -45,6 +44,8 @@ def _populate_tpm(rows):
             del row['tpm_aggregate']
 
 def _collapse(classes, cls, variant=None):
+    # Collapses the input matrix into separate matrices for each
+    # class and for each class-variant combination
     if not variant:
         matrix = {}
         for var, rows in classes[cls].items():
