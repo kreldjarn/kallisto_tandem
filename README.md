@@ -3,7 +3,7 @@
 This script serves as a pre- and postprocessing pipeline for using kallisto to align against separate transcriptomes of varying disparity in tandem.
 
 ## Preprocessing
-The preprocessing step combines one or more `fasta` filesand gives the entries an identifier corresponding to the data it contains.
+The preprocessing step combines one or more `fasta` files and gives the entries in each file an identifier corresponding to the data it contains.
 ```
 ./kallisto_tandem.py concatenate -i /path/to/input/file -o /path/to/output/file.fasta
 ```
