@@ -1,8 +1,18 @@
 #!/usr/bin/env python3
+""" kallisto_tandem serves as a pre- and postprocessing pipeline for using kallisto to align against separate transcriptomes of varying disparity in tandem."""
 import sys
 import csv
 import argparse
 import pathlib
+
+__author__ = "Kristján Eldjárn Hjörleifsson"
+__copyright__ = "Copyright 2018, Caltech"
+__credits__ = ["Kristján Eldjárn Hjörleifsson"]
+__license__ = ""
+__version__ = "0.1"
+__maintainer__ = "Kristján Eldjárn Hjörleifsson"
+__email__ = "keldjarn@caltech.edu"
+__status__ = "Development"
 
 # Utility functions
 # =================
@@ -143,7 +153,7 @@ def driver():
     parser.add_argument('action', choices=['concatenate', 'renormalize'], help='Concatenates one or more fasta files to be used to create a joint kallisto index. Renormalize splits up the data from a tandem kallisto run into its constituent classes and variants, renormalizes TPM w.r.t. each submatrix.')
     parser.add_argument('-i', help='Path to the input file to be processed.', metavar='input_file', required=True)
     parser.add_argument('-o', help='Path to the output file to which results are to be written.', metavar='output_directory', required=True)
-    parser.add_argument('--version', action='version', version='%(prog)s v0.1')
+    parser.add_argument('--version', action='version', version='%(prog)s v{}'.format(__version__))
     args = parser.parse_args()
 
     {
