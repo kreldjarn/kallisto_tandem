@@ -4,9 +4,8 @@ import csv
 import argparse
 import pathlib
 
-#
 # Utility functions
-#
+# =================
 def _populate_tpm(rows):
     denominators = {}
     # 1st pass to calculate the TPM denominators
@@ -64,10 +63,12 @@ def _collapse(classes, cls, variant=None):
         collapsed = [{**row} for row in classes[cls][variant]]
     return collapsed
 
-#
 # Public functions
-#
+# ================
 def postprocess_abundance(filename, output):
+    # Creates separate abundance tsv files for each class and each
+    # class-variant combination. Renormalizes the TPM for for each
+    # subset of the sample, respectively
     print('Parsing kallisto output into classes and variants')
     classes = {}
     with open(filename, 'r') as fh:
@@ -118,6 +119,10 @@ def postprocess_abundance(filename, output):
             tsvwriter.writerows(matrix)
 
 def concatenate_fasta(filename, output):
+    # Concatenates the fasta files denoted in filename. Identifies
+    # the entries from each fasta file with the corresponding class
+    # and variant, also denoted in filename. Writes the resulting
+    # fasta file to output
     with open(filename, 'r') as fh:
         args = [{'path': l[0],
                  'cls': l[1],
