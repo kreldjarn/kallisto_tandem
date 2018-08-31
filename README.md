@@ -15,7 +15,7 @@ path/to/file2.fasta class variant
 ```
 `class` and `variant` can be whichever identifiers you feel are descriptive of the fasta files, but usually `class` refers to an organism, and `variant` refers to different versions of its transcriptome, e.g. one of `processed, unprocessed`. Once combined, you can create a `kallisto` index from the resulting concatenated `fasta` file.
 
-# Postprocessing
+## Postprocessing
 Postprocessing consists mainly of splitting the `abundance.tsv` file output from a tandem kallisto run into separate matrices for each `class` and for each `class-variant` combination, and then renormalizing the respective TPMs w.r.t. the size of the corresponding subset of the sample. Note that the `-o` flag should point to a folder in which the results are to be stored.
 
 ```
