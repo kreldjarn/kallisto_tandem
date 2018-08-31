@@ -145,12 +145,12 @@ def concatenate_fasta(filename, output):
                     # Spaces in fastq headers signify start of comment.
                     # Append identifiers before comment.
                     line = line.rstrip('\n')
-                    ident = line[:line.find(' ')]
-                    if len(ident) < len(line):
+                    header = line[:line.find(' ')]
+                    if len(header) < len(line):
                         comment = line[line.find(' '):]
                     else:
                         comment = ''
-                    of.write(f'{ident}|{f["cls"]}|{f["var"]}{comment}\n')
+                    of.write(f'{header}|{f["cls"]}|{f["var"]}{comment}\n')
                 else:
                     of.write(line)
     of.close()
