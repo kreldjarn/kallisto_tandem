@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-""" kallisto_tandem serves as a pre- and postprocessing pipeline for using kallisto to align against separate transcriptomes of varying disparity in tandem."""
+""" kallisto_tandem serves as a pre- and postprocessing pipeline for using kallisto to align against separate transcriptomes of varying disparity, in tandem."""
 import sys
 import csv
 import argparse
@@ -142,6 +142,9 @@ def concatenate_fasta(filename, output):
         with open(f['path'], 'r') as fh:
             for line in fh:
                 if line.startswith('>'):
+                    # TODO:
+                    # Spaces in fastq headers signify start of comment.
+                    # Append class+var before first space in line
                     line = line.rstrip('\n')
                     of.write(f'{line}|{f["cls"]}|{f["var"]}\n')
                 else:
